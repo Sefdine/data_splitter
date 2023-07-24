@@ -1,14 +1,17 @@
 # Controller
 
 # Import packages
-import pandas as pd
+from src.model import *
 from config.conf import *
-from includes.helpers import *
+from includes.helpers import is_not_number
 import sys
 import time
 
 def control():
     df = pd.read_csv(input_csv_file, encoding="ISO-8859-1")
+
+    handle_database(df)
+    sys.exit(0)
 
     print (df.shape)
 
@@ -67,3 +70,5 @@ def control():
     # Delete the csv df to the shuffle
     shuffled_df.drop(db_df.index, axis='rows', inplace=True)
     print('Connection to database...')
+
+    handle_database(db_df)
