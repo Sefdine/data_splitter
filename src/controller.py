@@ -8,7 +8,16 @@ import sys
 import time
 
 def control():
-    df = pd.read_csv(input_csv_file, encoding="ISO-8859-1")
+    while True:
+        try:
+            input_csv_file = input('Enter the name of the csv file : ')
+            df = pd.read_csv(input_csv_file, encoding="ISO-8859-1")
+            if df.shape[0]:
+                break
+            else:
+                print('The file mentionned doesn\'t exist')
+        except:
+            print('The file mentionned doesn\'t exist')
 
     handle_database(df)
     sys.exit(0)
